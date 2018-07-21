@@ -13,21 +13,23 @@ coseno = cos(2*pi*f*t);
 %modulacion
 am = sm.*coseno;
 
-%Grafico de señal modulada
-figure(1)
-plot(am)
-legend('y(t)=x(t)coseno(t)')
-xlabel('frecuencia')
-ylabel('Amplitud')
-title('Señal Modulada')
-
+%Grafico
+figure('Name', 'Modulacion AM')
 %Grafico Señal de audio 
-figure(2)
-plot(z)
-legend('x(t) = Señal de audio')
-xlabel('frecuencia')
-ylabel('amplitud')
-title('Señal de audio')
+subplot(3,1,1)
+plot(t, sm)
+xlabel('Tiempo')
+ylabel('Moduladora')
+%Grafico de señal portadora
+subplot(3,1,2)
+plot(t, coseno)
+xlabel('Tiempo')
+ylabel('Portadora')
+%Grafico de señal modulada
+subplot(3,1,3)
+plot(t, am)
+xlabel('Tiempo')
+ylabel('Modulada')
 
 %Se definen dos portadoras una frecuencia alta y otra de frecuencia baja
 t1 = 1:1/fmuestreo:15;
@@ -39,20 +41,45 @@ pfb  = cos(2*pi*fBaja*t1); %portadora 0.01 HZ
 amFb = pfb.*otraSm; %señal modulada
 
 %Grafico Señal de modulada - Portadora de frecuencia baja
-figure(3)
-plot(amFb)
-xlabel('frecuencia')
-ylabel('amplitud')
-title('Señal de madulada - Portadora de frecuencia baja')
+figure('Name', 'Modulacion AM - Portadora de frecuencia baja')
+title('Modulacion AM')
+%Grafico Señal de audio 
+subplot(3,1,1)
+plot(t1, otraSm)
+xlabel('Tiempo')
+ylabel('Moduladora')
+%Grafico de señal portadora
+subplot(3,1,2)
+plot(t1, pfb)
+xlabel('Tiempo')
+ylabel('Portadora')
+%Grafico de señal modulada
+subplot(3,1,3)
+plot(t1, amFb)
+xlabel('Tiempo')
+ylabel('Modulada')
 
 %Para portadora de alta frecuencia
-fAlta = 3000;
-pfa  = cos(2*pi*fAlta*t1); %portadora 3000 HZ
+fAlta = 500;
+pfa  = cos(2*pi*fAlta*t1); %portadora 500 HZ
 amFa = pfa.*otraSm; %señal modulada
 
+
 %Grafico Señal de modulada - Portadora de frecuencia alta
-figure(4)
-plot(amFa)
-xlabel('frecuencia')
-ylabel('amplitud')
-title('Señal de madulada - Portadora de frecuencia alta')
+figure('Name', 'Modulacion AM - Portadora de frecuencia alta')
+title('Modulacion AM')
+%Grafico Señal de audio 
+subplot(3,1,1)
+plot(t1, otraSm)
+xlabel('Tiempo')
+ylabel('Moduladora')
+%Grafico de señal portadora
+subplot(3,1,2)
+plot(t1, pfa)
+xlabel('Tiempo')
+ylabel('Portadora')
+%Grafico de señal modulada
+subplot(3,1,3)
+plot(t1, amFa)
+xlabel('Tiempo')
+ylabel('Modulada')
