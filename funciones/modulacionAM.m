@@ -1,5 +1,5 @@
-[z, fs]=audioread('LaBaladaDelDiabloyLaMuerte.wav');
-transpuesta = z';
+[z, fs]=audioread('../señal moduladora/LaBaladaDelDiabloyLaMuerte.wav');
+transpuesta = z(:,1)'; %La señal esta formada por señales superpuestas, se escoge una de ellas para analizar
 
 %señal moduladora
 sm = transpuesta(1:44101);
@@ -32,8 +32,9 @@ xlabel('Tiempo')
 ylabel('Modulada')
 
 %Se definen dos portadoras una frecuencia alta y otra de frecuencia baja
-t1 = 1:1/fmuestreo:15;
-otraSm = transpuesta(1:617401); %señal moduladora
+t1 = 1:1/fmuestreo:14;
+cantidadMuestras = 573301;
+otraSm = transpuesta(1:cantidadMuestras); %señal moduladora
 
 %Para portadora de baja frecuencia
 fBaja = 0.1;
@@ -63,7 +64,6 @@ ylabel('Modulada')
 fAlta = 500;
 pfa  = cos(2*pi*fAlta*t1); %portadora 500 HZ
 amFa = pfa.*otraSm; %señal modulada
-
 
 %Grafico Señal de modulada - Portadora de frecuencia alta
 figure('Name', 'Modulacion AM - Portadora de frecuencia alta')
